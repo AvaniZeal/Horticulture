@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/LandDetails"
+            android:icon="@drawable/landdetails"
+            android:title="Land details" />
+        <item
+            android:id="@+id/Changelanguage"
+            android:icon="@drawable/changelanguage"
+            android:title="Change Lamguage" />
+        <item
+            android:id="@+id/About"
+            android:icon="@drawable/aboutus"
+            android:title="About" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/Contact"
+                android:icon="@drawable/contact"
+                android:title="Contact us" />
+
+        </menu>
+    </item>
+</menu>

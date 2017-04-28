@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+        <layer-list>
+            <item>
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#9e9d24"
+                android:endColor="#9e9d24"
+                android:angle="270" />
+           <!-- <stroke
+                android:width="0.3dp"
+                android:color="#808080" />-->
+            <corners
+                android:radius="80dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+            </item>
+            <item android:left="5dp" android:right="5dp"><bitmap android:gravity="center" android:src="@drawable/backcheveron" />
+            </item>
+
+
+        </layer-list>
+    </item>
+
+    <item android:state_focused="true" >
+        <shape android:shape="oval">
+            <gradient
+                android:endColor="#FF6347"
+                android:startColor="#FF4500"
+                android:angle="270" />
+           <!-- <stroke
+                android:width="0.3dp"
+                android:color="#808080" />-->
+            <corners
+                android:radius="3dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+
+    <item>
+
+<layer-list>
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:endColor="#558b2f"
+                android:startColor="#558b2f"
+                android:angle="270" />
+           <!-- <stroke
+                android:width="0.3dp"
+                android:color="#808080" />-->
+            <corners
+                android:radius="80dp" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+    <item android:left="5dp" android:right="5dp"><bitmap android:gravity="center" android:src="@drawable/backcheveron" />
+    </item>
+
+</layer-list>
+    </item>
+</selector>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

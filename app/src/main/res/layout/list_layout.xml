@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/list">
+
+    <TextView
+        android:id="@+id/queryTitle"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="Title"
+        android:textColor="#FFFFFF"
+        android:layout_weight="2.5"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/query"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:text="Query"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="2.5"
+        android:text="Status"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        />
+
+
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/list">
+
+
+    <TextView
+        android:id="@+id/queryId"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="queryId"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/querycatagory"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:text="Category"
+        android:layout_toRightOf="@+id/advisorImages"
+        android:textColor="#000000"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/place"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/advisorNames"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="Himachal"
+        android:textColor="#000000" />
+
+
+</LinearLayout>

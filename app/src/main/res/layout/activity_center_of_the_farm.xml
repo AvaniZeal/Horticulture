@@ -1,0 +1,180 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:padding="5dp"
+    android:background="#E5E5E5"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewCenterOfTheFarmGPSRiskProfilling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Fetching location please wait"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="3"
+            android:elevation="5dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/buttonCenterOfTheFarmCoordinateRiskProfilling"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:background="@drawable/cordinate" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text=" Coordinates of corner"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="4"
+            android:elevation="5dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/buttonCenterOfTheFarmImageRiskProfilling"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
+                android:text="2"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:background="@drawable/capturecornerimage" />
+
+            <TextView
+                android:id="@+id/textViewCamDescCenterOfThefarmRiskProfilling"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.8"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="One long shot photographs every four direction"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="4"
+            android:elevation="5dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+
+            <TextView
+                android:id="@+id/buttonCenterOfTheFarmVideoRiskProfilling"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
+                android:background="@drawable/capturepanaroma"
+                android:gravity="center"
+                android:src="@drawable/icon_video"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewVideoDescRiskProfilling"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.9"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="Panoramic video starting from the vine till canopy focusing bunches, berries"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewSavedStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"/>
+
+            <Button
+                android:id="@+id/buttonBackCenterOfTheFarm"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/custombuttonback"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"/>
+            <Button
+                android:id="@+id/buttonNextCenterOfTheFarmRiskProfilling"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/custombutton1"
+                android:textColor="#FFFFFF" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

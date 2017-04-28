@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Databaseinfo>
+
+    <table>
+        <schema>
+            <![CDATA[create table App_User_Details(                           UserID text,
+																			  Password text,
+																			  IMEI text,
+																			  LastLoginId text,
+																			  LastLoginDate text)]]></schema>
+
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table CA_Farmer_Details(   Userid text,
+                                                       UserName text,
+                                                       Mobile_no text,
+                                                       Age int,
+                                                       Address text,
+                                                       Village_Name text,
+                                                       Pincode text,
+                                                       Pruning_date text,
+                                                       CreatedDate text,
+                                                       CreatedBy text,
+                                                       UpdatedDate text,
+                                                       UpdatedBy text)]]></schema>
+    </table>
+
+
+    <table>
+        <schema>
+            <![CDATA[create table CA_Farmer_Registered_Crops(                 UserID text,
+																			  CropCode int,
+																			  CreatedDate text,
+																			  CreatedBy text,
+																			  ModifiedDate text,
+																			  ModifiedBy text)]]></schema>
+
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Master_Questions    ( LanguageId int,
+                                                        Crop_Code int,
+                                                        QuestionId int,
+                                                        QuestionOrder text,
+                                                        Question_Desc text,
+                                                        Image_count text,
+                                                        Helping_Text text,
+                                                        Stage text,
+                                                        video_count text,
+                                                        Take_Image_in_Bulk text,
+                                                        Hint_Text_in_Bulk text,
+                                                        CreatedOn text,
+										                CreatedBy text,
+										                UpdatedOn text,
+										                UpdatedBy text)]]>
+        </schema>
+
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Master_Options( LanguageId int,
+                                                  QuestionId int,
+                                                  OptionId int,
+                                                  Option_Desc text,
+                                                  Marks text,
+                                                  CreatedOn text,
+										          CreatedBy text,
+										          UpdatedOn text,
+										          UpdatedBy text)]]></schema>
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Configuration_File_Details( ConfigurationId int,
+													   		  VersionNo int,
+													   		  versionType text,
+													   		  ApplicationURL text,
+													   		  WebServiceURL text,
+													   		  DateofExpairy text,
+													   		  SMSreceiverMobNo text,
+													   		  Notification text,
+													   		  ConfigurationUpdatedDate text,
+													   		  ConfigurationUpdatedBy text,
+													   		  ApplicableTo text,
+													   		  IsFunctionable text)]]></schema>
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Land_Crop_Geo_Data(        LandId text,
+                                                                 User_Id text,
+                                                                 CropCode int,
+                                                                 Corner_ID int,
+                                                                 CornerType int,
+                                                                 Coordinates text,
+                                                                 first_image_url text,
+                                                                 second_image_url text,
+                                                                 third_image_url text,
+                                                                 fourth_image_url text,
+                                                                 corner_video_url text,
+                                                                 upload_status text)]]></schema>
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Land_Crop_Questionnaire_Answer(       User_Id	text,
+							                                            Crop_Id text,
+							                                            Land_Id int,
+                                                                        question_id int,
+                                                                        question_order text,
+                                                                        option_id text,
+                                                                        other text,
+                                                                        upload_status text,
+                                                                        timestamp text)]]></schema>
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Land_Crop_Center_Of_The_Farm(          LandId text,
+                                                                         User_Id text,
+                                                                         CropCode int,
+                                                                         Corner_ID int,
+                                                                         CornerType int,
+                                                                         Coordinates text,
+                                                                         first_image_url text,
+                                                                         second_image_url text,
+                                                                         third_image_url text,
+                                                                         fourth_image_url text,
+                                                                         center_video_url text,
+                                                                         upload_status text)]]></schema>
+
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[create table Land_Crop_Questionnaire_Media (	User_Id	text,
+                                                                    Crop_Id text,
+                                                                    Land_Id text,
+                                                                    Question_id text,
+                                                                    photo_lat_lngs text,
+                                                                    Media_Id int,
+                                                                    Media_type text,
+                                                                    Media_url text,
+                                                                    Media_help_text	text,
+                                                                    upload_status text)]]></schema>
+    </table>
+
+
+
+    <table>
+        <schema>
+            <![CDATA[create table Ask_Expert_Query
+						(
+							sl_no int,
+							query_title text,
+							query text,
+							photo_location text,
+							video_location text,
+							audio_location text,
+							status text)]]></schema>
+    </table>
+
+
+
+
+
+
+
+
+</Databaseinfo>
