@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
         }
 
 
-       /* newuser.setOnClickListener(new View.OnClickListener() {
+        newuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(Login.this,RegisterPage.class);
@@ -55,14 +55,14 @@ public class Login extends AppCompatActivity {
 
 
             }
-        });*/
+        });
 
-        login.setOnClickListener(new View.OnClickListener() {
+      /*  login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                /*SoapProxy proxy=new SoapProxy(Login.this);
-                proxy.DownloadGenericAdvisoryTables(appUserDetails);*/
+                *//*SoapProxy proxy=new SoapProxy(Login.this);
+                proxy.DownloadGenericAdvisoryTables(appUserDetails);*//*
 
                 Intent i=new Intent(Login.this,FarmerDetailsActivity.class);
                 Bundle mBundle = new Bundle();
@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
                 i.putExtras(mBundle);
                 startActivity(i);
             }
-        });
+        });*/
 
     }
 
