@@ -162,14 +162,14 @@
                         android:src="@drawable/icon_video" />
                 </LinearLayout>
 
-                <Button
+               <!-- <Button
                     android:id="@+id/buttonNextRiskProfillingQuestionnaire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/buttonstyle"
                     android:text="Next"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF" />-->
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
