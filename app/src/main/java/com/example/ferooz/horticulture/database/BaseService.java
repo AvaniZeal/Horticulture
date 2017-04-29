@@ -982,7 +982,6 @@ public class BaseService {
                         obj.setCornerType(c.getInt(c.getColumnIndexOrThrow(DBConstants.COLUMN_LAND_CROP_GEO_DATA_CORNER_TYPE)));
                         obj.setCorner_video_url(c.getString(c.getColumnIndexOrThrow(DBConstants.COLUMN_LAND_CROP_GEO_DATA_CORNER_VIDEO_URL)));
                         obj.setFourth_image_url(c.getString(c.getColumnIndexOrThrow(DBConstants.COLUMN_LAND_CROP_GEO_DATA_FOURTH_IMAGE_URL)));
-                        obj.setCoordinates(c.getString(c.getColumnIndexOrThrow(DBConstants.COLUMN_LAND_CROP_GEO_DATA_COORDINATES)));
                         obj.setLandId(c.getString(c.getColumnIndexOrThrow(DBConstants.COLUMN_LAND_CROP_GEO_DATA_LAND_ID)));
 
                         if(obj!=null){
