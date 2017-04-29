@@ -160,6 +160,7 @@
     </string-array>
     <string name="title_activity_farmer_details">FarmerDetails</string>
     <string name="title_activity_dummy">Dummy</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 
 </resources>

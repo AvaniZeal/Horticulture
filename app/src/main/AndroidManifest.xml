@@ -116,14 +116,18 @@
         <activity
             android:name=".Questionarie"
             android:label="Questions"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LandDetails.CropDetailQuestionary"
             android:label="CropDetailsQuestions"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LandDetails.Dummy"
             android:label="@string/title_activity_dummy"
+            android:theme="@style/AppTheme1.NoActionBar" />
+        <activity
+            android:name=".LandDetails.Main2Activity"
+            android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme1.NoActionBar"></activity>
     </application>
 
