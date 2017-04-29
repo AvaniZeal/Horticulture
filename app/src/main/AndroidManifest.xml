@@ -113,14 +113,18 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-        <activity android:name=".Questionarie"
+        <activity
+            android:name=".Questionarie"
             android:label="Questions"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".LandDetails.CropDetailQuestionary"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".LandDetails.CropDetailQuestionary"
             android:label="CropDetailsQuestions"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".LandDetails.Dummy"
+            android:label="@string/title_activity_dummy"
+            android:theme="@style/AppTheme1.NoActionBar"></activity>
     </application>
 
 </manifest>
