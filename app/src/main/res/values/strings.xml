@@ -159,6 +159,7 @@
         <item>01-03-2017</item>
     </string-array>
     <string name="title_activity_farmer_details">FarmerDetails</string>
+    <string name="title_activity_dummy">Dummy</string>
 
 
 </resources>
