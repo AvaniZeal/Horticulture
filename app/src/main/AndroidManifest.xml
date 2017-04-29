@@ -132,6 +132,10 @@
         <activity
             android:name=".LandDetails.Main3Activity"
             android:label="@string/title_activity_main3"
+            android:theme="@style/AppTheme1.NoActionBar" />
+        <activity
+            android:name=".LandDetails.Main4Activity4"
+            android:label="@string/title_activity_main44"
             android:theme="@style/AppTheme1.NoActionBar"></activity>
     </application>
 
