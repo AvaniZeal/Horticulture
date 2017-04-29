@@ -219,6 +219,7 @@ public class GeoFencing extends AppCompatActivity implements View.OnClickListene
                 if(coordinatesCount==1){
                     if((imageCount<3)){
                         mediatype="image";
+//                        filePath = filePath.toString().substring(filePath.toString().indexOf("Land_Crop_Details"));
                         File imageFile = new File(FarmCornerFolder, "Corner_Image_"+(imageCount+1)+ ".jpg");
                         imageUri = Uri.fromFile(imageFile);
                         //imagepath=imageFile.toString().substring(imageFile.toString().indexOf("Land_Crop_Details"));

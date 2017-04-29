@@ -152,8 +152,7 @@ public class LandCropDetails extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
-
-    private class UploadLandCropDetails extends AsyncTask<String, String, String> {
+ private class UploadLandCropDetails extends AsyncTask<String, String, String> {
 
         private String resp;
         ProgressDialog progressDialog;
