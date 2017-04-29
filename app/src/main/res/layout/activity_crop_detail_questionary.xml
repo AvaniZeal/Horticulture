@@ -104,6 +104,16 @@
                     android:text="Quest guide"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
+                <TextView
+                    android:id="@+id/textViewSavedStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#ff0000"
+                    android:layout_marginTop="3dp"
+                    android:text="TextView" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:id="@+id/linearLayoutRiskProfillingImage"
@@ -152,6 +162,7 @@
                         android:gravity="center"
                         android:text="Video respect to guided above"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
+
                     <ImageButton
                         android:id="@+id/buttonRiskProfillingQuestionnaireVideo"
                         android:layout_width="0dp"
@@ -161,14 +172,25 @@
                         android:src="@drawable/icon_video" />
                 </LinearLayout>
 
-               <!-- <Button
+
+                <Button
                     android:id="@+id/buttonNextRiskProfillingQuestionnaire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/buttonstyle"
                     android:text="Next"
-                    android:textColor="#FFFFFF" />-->
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/buttonBackQuestionnaire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttonstyle"
+                    android:text="Back"
+                    android:textColor="#FFFFFF" />
+
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
