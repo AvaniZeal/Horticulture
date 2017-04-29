@@ -128,6 +128,10 @@
         <activity
             android:name=".LandDetails.Main2Activity"
             android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme1.NoActionBar" />
+        <activity
+            android:name=".LandDetails.Main3Activity"
+            android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme1.NoActionBar"></activity>
     </application>
 
