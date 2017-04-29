@@ -49,14 +49,14 @@
             android:hint="Password"
             android:inputType="numberPassword" />
 
-        <Button
+      <!--  <Button
             android:id="@+id/loginbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/customloginbutton"
             android:text="Login"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff" />-->
 
        <!-- <TextView
             android:id="@+id/newuser"
