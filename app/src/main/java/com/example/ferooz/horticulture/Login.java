@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
         }
 
 
-       /* newuser.setOnClickListener(new View.OnClickListener() {
+        newuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(Login.this,RegisterPage.class);
@@ -56,9 +56,9 @@ public class Login extends AppCompatActivity {
 
 
             }
-        });*/
+        });
 
-      /*  login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity {
                 i.putExtras(mBundle);
                 startActivity(i);
             }
-        });*/
+        });
 
     }
 
