@@ -115,11 +115,16 @@
             android:theme="@style/AppTheme1" />
         <activity android:name=".Questionarie"
             android:label="Questions"
-            android:parentActivityName=".MainActivity"
-
-
-            >
+            android:parentActivityName=".MainActivity">
         </activity>
+
+        <activity
+            android:name=".SeasonDetails.SeasonWiseQuestions"
+            android:label="Season Questions"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
     </application>
 
 </manifest>

@@ -24,42 +24,42 @@ import com.example.ferooz.horticulture.webservice.SoapProxy;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class RegisterPage extends AppCompatActivity implements View.OnClickListener{
+public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
     ImageView back;
     Button btnActivate, btnSubmit;
-    EditText edtUserName,edtPassword, edtOTP;
-    AppUserDetails appUser=new AppUserDetails();
-    String otp,ContactNumber;
+    EditText edtUserName, edtPassword, edtOTP;
+    AppUserDetails appUser = new AppUserDetails();
+    String otp, ContactNumber;
     TelephonyManager tm;
     String IMEI;
-    BaseService baseService =new BaseService(this);
-    public  final static String PAR_KEY = "com.easyinfogeek.objectPass.par";
-    AppUserDetails appUserDetails=new AppUserDetails();
+    BaseService baseService = new BaseService(this);
+    public final static String PAR_KEY = "com.easyinfogeek.objectPass.par";
+    AppUserDetails appUserDetails = new AppUserDetails();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
-        back= (ImageView) findViewById(R.id.imageButton);
-        btnActivate=(Button)findViewById(R.id.activatebutton);
-        btnSubmit=(Button)findViewById(R.id.buttonSubmit);
+        back = (ImageView) findViewById(R.id.imageButton);
+        btnActivate = (Button) findViewById(R.id.activatebutton);
+        btnSubmit = (Button) findViewById(R.id.buttonSubmit);
         btnSubmit.setOnClickListener(this);
         btnActivate.setOnClickListener(this);
-        edtUserName=(EditText)findViewById(R.id.usertext);
-        edtPassword=(EditText)findViewById(R.id.passwordtext);
-        edtOTP=(EditText)findViewById(R.id.editTextOTP);
+        edtUserName = (EditText) findViewById(R.id.usertext);
+        edtPassword = (EditText) findViewById(R.id.passwordtext);
+        edtOTP = (EditText) findViewById(R.id.editTextOTP);
 
-       // new DownloadMasterTables().execute();
-       try{
-           tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-           IMEI="1234";//tm.getDeviceId();
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+        // new DownloadMasterTables().execute();
+        try {
+            tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            IMEI = "1234";//tm.getDeviceId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-       // edtUserName.setText("0404489");
-       // edtPassword.setText("123");
+        // edtUserName.setText("0404489");
+        // edtPassword.setText("123");
 
         //new ValidateUserOTP().execute();
 
@@ -67,7 +67,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(RegisterPage.this,Login.class);
+                Intent in = new Intent(RegisterPage.this, Login.class);
                 startActivity(in);
 
             }
@@ -82,34 +82,34 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                         .setAction("Action", null).show();
             }
         });*/
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.activatebutton:
 
-                if(Internet.isAvailable(getApplicationContext())){
+                if (Internet.isAvailable(getApplicationContext())) {
 
                     appUser.setUserID(edtUserName.getText().toString());
                     appUser.setPassword(edtPassword.getText().toString());
                     appUser.setIMEI(IMEI);
 
-                    new	ValidateValidUser().execute();
+                    new ValidateValidUser().execute();
 
-                }else{
+                } else {
                     //Toast.makeText(getApplicationContext(), "ಇಂಟರನೆಟ್ ಸಂಪರ್ಕ ಲಭ್ಯವಿಲ್ಲ", Toast.LENGTH_LONG).show();
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setMessage("No Internet connection");
-                            alertDialogBuilder.setPositiveButton("Ok",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface arg0, int arg1) {
-                                            finish();
-                                        }
-                                    });
+                    alertDialogBuilder.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    finish();
+                                }
+                            });
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
@@ -119,15 +119,15 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonSubmit:
-                if(!(edtPassword.getText().toString().equals(null) || edtUserName.getText().toString().equals(null))) {
+                if (!(edtPassword.getText().toString().equals(null) || edtUserName.getText().toString().equals(null))) {
                     if (!(edtOTP.getText().toString().equals(null))) {
-                        otp=edtOTP.getText().toString().trim();
+                        otp = edtOTP.getText().toString().trim();
                         new ValidateUserOTP().execute();
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Please enter OTP", Toast.LENGTH_LONG).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Enter user name or Password", Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -146,28 +146,28 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
             String strResult = new String();
             try {
 
-                    SoapProxy proxy = new SoapProxy(RegisterPage.this);
-                    Parser parseResponse = new Parser(RegisterPage.this);
-                    //strResult = proxy.DownloadRiskProfillingDataTables(RiskProfillingWorksTableName[i]);
-                    strResult=proxy.ValidateValidAppUser(appUser);
-                    if(strResult.equalsIgnoreCase("Invalid user")){
-                        strResult="Invalid user";
-                    }else if(strResult.equalsIgnoreCase("Failure")){
-                        strResult="Failure";
-                    }else if(strResult.equalsIgnoreCase("Success")){
-                        strResult="Success";
-                    }else if(strResult.equalsIgnoreCase("User is already registered from another device")){
-                        strResult="User is already registered from another device";
-                    }else if(strResult.equalsIgnoreCase("Version outdated")){
-                        strResult="Version outdated";
-                    }
-
-
-                    System.out.println(strResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    strResult = "Exception";
+                SoapProxy proxy = new SoapProxy(RegisterPage.this);
+                Parser parseResponse = new Parser(RegisterPage.this);
+                //strResult = proxy.DownloadRiskProfillingDataTables(RiskProfillingWorksTableName[i]);
+                strResult = proxy.ValidateValidAppUser(appUser);
+                if (strResult.equalsIgnoreCase("Invalid user")) {
+                    strResult = "Invalid user";
+                } else if (strResult.equalsIgnoreCase("Failure")) {
+                    strResult = "Failure";
+                } else if (strResult.equalsIgnoreCase("Success")) {
+                    strResult = "Success";
+                } else if (strResult.equalsIgnoreCase("User is already registered from another device")) {
+                    strResult = "User is already registered from another device";
+                } else if (strResult.equalsIgnoreCase("Version outdated")) {
+                    strResult = "Version outdated";
                 }
+
+
+                System.out.println(strResult);
+            } catch (Exception e) {
+                e.printStackTrace();
+                strResult = "Exception";
+            }
             return strResult;
 
 
@@ -180,7 +180,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
             progressDialog.dismiss();
             // finalResult.setText(result);
 
-            if(strResult.equals("Invalid user")) {
+            if (strResult.equals("Invalid user")) {
                 //Toast.makeText(LoginActivity.this, "Invalid user", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -192,7 +192,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("Invalid Password")) {
+            } else if (strResult.equals("Invalid Password")) {
                 //Toast.makeText(LoginActivity.this, "ಈಗಾಗಲೇ ಬೇರೊಂದು ಮೊಬೈಲ್ ಸಾಧನದಿಂದ ಈ ವಿಶಿಷ್ಠ ಗುರುತು ಬಳಸಿ ಬಳಕೆದಾರನು ನೊಂದಾಯಿಸಿಕೊಂಡಿರುತ್ತಾನೆ", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -204,10 +204,9 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("Failure")) {
+            } else if (strResult.equals("Failure")) {
                 Toast.makeText(RegisterPage.this, "Connection failed", Toast.LENGTH_LONG).show();
-            }
-            else if(strResult.equals("User is already registered from another device")) {
+            } else if (strResult.equals("User is already registered from another device")) {
                 //Toast.makeText(LoginActivity.this, "ಈಗಾಗಲೇ ಬೇರೊಂದು ಮೊಬೈಲ್ ಸಾಧನದಿಂದ ಈ ವಿಶಿಷ್ಠ ಗುರುತು ಬಳಸಿ ಬಳಕೆದಾರನು ನೊಂದಾಯಿಸಿಕೊಂಡಿರುತ್ತಾನೆ", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -219,7 +218,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("You don't have any experiments to conduct for this season")) {
+            } else if (strResult.equals("You don't have any experiments to conduct for this season")) {
                 //Toast.makeText(LoginActivity.this, "User is already registered from another device", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -232,31 +231,31 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 });
                 alertDialog.show();
 
-            }else{
+            } else {
 
                 //
                 //Toast.makeText(getApplicationContext(), "OTP has been sent to your number please enter OTP", Toast.LENGTH_SHORT).show();
-                    try {
-                        JSONObject jsonObj = new JSONObject(strResult);
-                        // Getting JSON Array node
-                        JSONArray appUserDetails = jsonObj.getJSONArray("Table1");
-                        // looping through All Contacts
-                        for (int i = 0; i < appUserDetails.length(); i++) {
-                            JSONObject c = appUserDetails.getJSONObject(i);
-                            String str = c.getString("UserDetails");
-                            strResult=str;
-                        }
-                    }catch (Exception e){
-
+                try {
+                    JSONObject jsonObj = new JSONObject(strResult);
+                    // Getting JSON Array node
+                    JSONArray appUserDetails = jsonObj.getJSONArray("Table1");
+                    // looping through All Contacts
+                    for (int i = 0; i < appUserDetails.length(); i++) {
+                        JSONObject c = appUserDetails.getJSONObject(i);
+                        String str = c.getString("UserDetails");
+                        strResult = str;
                     }
+                } catch (Exception e) {
 
-                    String arr[]=strResult.split("\\|",2);
+                }
+
+                String arr[] = strResult.split("\\|", 2);
 
                 // layoutOTP.setVisibility(View.VISIBLE);
 
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(RegisterPage.this);
                 alertDialog.setTitle("Alert:");
-                alertDialog.setMessage("User id : "+arr[0]+" Assigned to Mobile number : "+arr[1]+"");
+                alertDialog.setMessage("User id : " + arr[0] + " Assigned to Mobile number : " + arr[1] + "");
 
                 alertDialog.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -315,36 +314,40 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
             String strResult = new String();
 
-                try {
+            try {
 
-                    SoapProxy proxy = new SoapProxy(RegisterPage.this);
-                    Parser parseResponse = new Parser(RegisterPage.this);
+                SoapProxy proxy = new SoapProxy(RegisterPage.this);
+                Parser parseResponse = new Parser(RegisterPage.this);
 
-                    appUser.setUserID("aswin3333");
-                    appUser.setPassword("123");
-                    appUser.setIMEI("1234");
+//                    appUser.setUserID("aswin3333");
+//                    appUser.setPassword("123");
+//                    appUser.setIMEI("1234");
 
-
-                    strResult=proxy.ValidateAppUser(appUser);
-
-                    if(strResult.equalsIgnoreCase("Invalid user")){
-                        strResult="Invalid user";
-                    }else if(strResult.equalsIgnoreCase("Failure")){
-                        strResult="Failure";
-                    }else if(strResult.equalsIgnoreCase("Success")){
-                        strResult="Success";
-                    }else if(strResult.equalsIgnoreCase("User is already registered from another device")){
-                        strResult="User is already registered from another device";
-                    }else if(strResult.equalsIgnoreCase("Version outdated")){
-                        strResult="Version outdated";
-                    }
+                appUser.setUserID("vijay");
+                appUser.setPassword("123");
+                appUser.setIMEI("1234");
 
 
-                    System.out.println(strResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    strResult = "InternetconectionProblem";
+                strResult = proxy.ValidateAppUser(appUser);
+
+                if (strResult.equalsIgnoreCase("Invalid user")) {
+                    strResult = "Invalid user";
+                } else if (strResult.equalsIgnoreCase("Failure")) {
+                    strResult = "Failure";
+                } else if (strResult.equalsIgnoreCase("Success")) {
+                    strResult = "Success";
+                } else if (strResult.equalsIgnoreCase("User is already registered from another device")) {
+                    strResult = "User is already registered from another device";
+                } else if (strResult.equalsIgnoreCase("Version outdated")) {
+                    strResult = "Version outdated";
                 }
+
+
+                System.out.println(strResult);
+            } catch (Exception e) {
+                e.printStackTrace();
+                strResult = "InternetconectionProblem";
+            }
             return strResult;
 
         }
@@ -358,7 +361,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
 
             this.dialog.dismiss();//Invalid Password
-            if(strResult.equals("Invalid user")) {
+            if (strResult.equals("Invalid user")) {
                 //Toast.makeText(LoginActivity.this, "Invalid user", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -370,7 +373,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("Invalid Password")) {
+            } else if (strResult.equals("Invalid Password")) {
                 //Toast.makeText(LoginActivity.this, "ಈಗಾಗಲೇ ಬೇರೊಂದು ಮೊಬೈಲ್ ಸಾಧನದಿಂದ ಈ ವಿಶಿಷ್ಠ ಗುರುತು ಬಳಸಿ ಬಳಕೆದಾರನು ನೊಂದಾಯಿಸಿಕೊಂಡಿರುತ್ತಾನೆ", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -382,10 +385,9 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("Failure")) {
+            } else if (strResult.equals("Failure")) {
                 Toast.makeText(RegisterPage.this, "Connection failed", Toast.LENGTH_LONG).show();
-            }
-            else if(strResult.equals("User is already registered from another device")) {
+            } else if (strResult.equals("User is already registered from another device")) {
                 //Toast.makeText(LoginActivity.this, "ಈಗಾಗಲೇ ಬೇರೊಂದು ಮೊಬೈಲ್ ಸಾಧನದಿಂದ ಈ ವಿಶಿಷ್ಠ ಗುರುತು ಬಳಸಿ ಬಳಕೆದಾರನು ನೊಂದಾಯಿಸಿಕೊಂಡಿರುತ್ತಾನೆ", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -397,7 +399,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 alertDialog.show();
-            }else if(strResult.equals("You don't have any experiments to conduct for this season")) {
+            } else if (strResult.equals("You don't have any experiments to conduct for this season")) {
                 //Toast.makeText(LoginActivity.this, "User is already registered from another device", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
@@ -410,7 +412,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 });
                 alertDialog.show();
 
-            }else {//
+            } else {//
                 //Toast.makeText(getApplicationContext(), "OTP has been sent to your number please enter OTP", Toast.LENGTH_SHORT).show();
 
                 try {
@@ -421,26 +423,26 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     for (int i = 0; i < appUserDetails.length(); i++) {
                         JSONObject c = appUserDetails.getJSONObject(i);
                         String str = c.getString("UserDetails");
-                        strResult=str;
+                        strResult = str;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
-                ContactNumber=strResult;
+                ContactNumber = strResult;
 
-                if(strResult.length()==10){
+                if (strResult.length() == 10) {
                     android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                             RegisterPage.this).create();
                     alertDialog.setTitle("Alert :");
-                    alertDialog.setMessage("Activation OTP has been sent to mobile number "+strResult+"" );
+                    alertDialog.setMessage("Activation OTP has been sent to mobile number " + strResult + "");
                     alertDialog.setButton("ಸರಿ", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
                     alertDialog.show();
-                }else{
+                } else {
                     android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                             RegisterPage.this).create();
                     alertDialog.setTitle("Alert :");
@@ -454,12 +456,14 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+
         @Override
         protected void onPreExecute() {
             dialog = ProgressDialog.show(RegisterPage.this,
                     "Validating User - ",
                     "Requesting for OTP Please wait..!");
         }
+
         @Override
         protected void onProgressUpdate(String... text) {
             //finalResult.setText(text[0]);
@@ -479,137 +483,22 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
             String strResult = new String();
 
-                try {
-
-
-                    SoapProxy proxy=new SoapProxy(RegisterPage.this);
-                    Parser parseResponse= new Parser(RegisterPage.this);
-                    strResult=proxy.ValidateAppUserOTP(appUser, otp);
-
-                    if(strResult.equalsIgnoreCase("NoUpdates")){
-                    }else if(strResult.equalsIgnoreCase("Failure")){
-                        strResult="InternetconectionProblem";
-                    }else if(strResult.equalsIgnoreCase("Invalid OTP")){
-                        strResult="Invalid OTP";
-                    }
-                    else{
-                        System.out.println(strResult);
-                       // parseResponse.ParseXmlAppUser(strResult,ContactNumber);
-                        parseResponse.ParseJsonAppUser(strResult,ContactNumber);
-
-                    }
-
-
-                    System.out.println(strResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    strResult = "InternetconectionProblem";
-                }
-            return strResult;
-
-        }
-
-
-        @Override
-        protected void onPostExecute(String strResult) {
-            // execution of result of Long time consuming operation
-            progressDialog.dismiss();
-            // finalResult.setText(result);
-
-            if(strResult.equals("Error")) {
-                Toast.makeText(RegisterPage.this, "Internet Connection unavailable", Toast.LENGTH_LONG).show();
-            }else if(strResult.equals("InternetconectionProblem")) {
-                Toast.makeText(RegisterPage.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
-            }
-            else if(strResult.equals("Invalid OTP")) {
-                Toast.makeText(RegisterPage.this, "Please enter valid OTP", Toast.LENGTH_LONG).show();
-                android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
-                        RegisterPage.this).create();
-                alertDialog.setTitle("Alert :");
-                alertDialog.setMessage("Invalid OTP");
-                alertDialog.setButton("ಸರಿ", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                alertDialog.show();
-            }//CCE_FormOne_SurveyNumber_Details
-            else{
-
-                long res=baseService.UpdateMobileNumber(ContactNumber,edtUserName.getText().toString());
-
-                // new ActivationFeedBack().execute();
-               Toast.makeText(getApplicationContext(), "User activated", Toast.LENGTH_SHORT).show();
-                new DownloadMasterTables().execute();
-
-                /*android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
-                        RegisterPage.this).create();
-                alertDialog.setTitle("Alert :");
-                alertDialog.setMessage("User Activated " );
-                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        new DownloadConfigurationFile().execute();
-                    }
-                });
-                alertDialog.show();*/
-               // btnActivate.setVisibility(View.GONE);
-                //layoutOTP.setVisibility(View.GONE);
-
-            }
-
-        }
-
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(RegisterPage.this,
-                    "Varifying OTP Please wait","");
-        }
-
-
-        @Override
-        protected void onProgressUpdate(String... text) {
-            //finalResult.setText(text[0]);
-
-        }
-    }
-
-    private class DownloadMasterTables extends AsyncTask<String, String, String> {
-
-        private String resp;
-        ProgressDialog progressDialog;
-
-        @Override
-        protected String doInBackground(String... params) {
-            publishProgress("Sleeping..."); // Calls onProgressUpdate()
-
-
-            String strResult = new String();
-
             try {
+                SoapProxy proxy = new SoapProxy(RegisterPage.this);
+                Parser parseResponse = new Parser(RegisterPage.this);
+                strResult = proxy.ValidateAppUserOTP(appUser, otp);
 
+                if (strResult.equalsIgnoreCase("NoUpdates")) {
+                } else if (strResult.equalsIgnoreCase("Failure")) {
+                    strResult = "InternetconectionProblem";
+                } else if (strResult.equalsIgnoreCase("Invalid OTP")) {
+                    strResult = "Invalid OTP";
+                } else {
+                    System.out.println(strResult);
+                    // parseResponse.ParseXmlAppUser(strResult,ContactNumber);
+                    parseResponse.ParseJsonAppUser(strResult, ContactNumber);
 
-                SoapProxy proxy=new SoapProxy(RegisterPage.this);
-                Parser parseResponse= new Parser(RegisterPage.this);
-                String[] tableName={"CA_Farmer_Details","CA_Farmer_Registered_Crops","Master_Questions","Master_Options"};
-                for(int i=0;i<4;i++){
-
-                    strResult=proxy.DownloadMasterTables(tableName[i],appUser);
-
-                    if(strResult.equalsIgnoreCase("NoUpdates")){
-                    }else if(strResult.equalsIgnoreCase("Failure")){
-                        strResult="InternetconectionProblem";
-                    }else if(strResult.equalsIgnoreCase("Invalid OTP")){
-                        strResult="Invalid OTP";
-                    }else if(strResult.equalsIgnoreCase("No Data")){
-                        strResult="No Data";
-                    }else{
-                        System.out.println(strResult);
-                        parseResponse.ParseJsonMasterTables(strResult,tableName[i],appUser);
-
-                    }
                 }
-
 
 
                 System.out.println(strResult);
@@ -628,17 +517,16 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
             progressDialog.dismiss();
             // finalResult.setText(result);
 
-            if(strResult.equals("Error")) {
+            if (strResult.equals("Error")) {
                 Toast.makeText(RegisterPage.this, "Internet Connection unavailable", Toast.LENGTH_LONG).show();
-            }else if(strResult.equals("InternetconectionProblem")) {
+            } else if (strResult.equals("InternetconectionProblem")) {
                 Toast.makeText(RegisterPage.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
-            }
-            else if(strResult.equals("Invalid OTP")) {
+            } else if (strResult.equals("Invalid OTP")) {
                 Toast.makeText(RegisterPage.this, "Please enter valid OTP", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
                 alertDialog.setTitle("Alert :");
-                alertDialog.setMessage("Activation OTP has been sent to mobile number "+strResult+"" );
+                alertDialog.setMessage("Invalid OTP");
                 alertDialog.setButton("ಸರಿ", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -646,9 +534,133 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 });
                 alertDialog.show();
             }//CCE_FormOne_SurveyNumber_Details
-            else{
+            else {
 
-                long res=baseService.UpdateMobileNumber(ContactNumber,edtUserName.getText().toString());
+                long res = baseService.UpdateMobileNumber(ContactNumber, edtUserName.getText().toString());
+
+                // new ActivationFeedBack().execute();
+                Toast.makeText(getApplicationContext(), "User activated", Toast.LENGTH_SHORT).show();
+                new DownloadMasterTables().execute();
+
+                /*android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                        RegisterPage.this).create();
+                alertDialog.setTitle("Alert :");
+                alertDialog.setMessage("User Activated " );
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        new DownloadConfigurationFile().execute();
+                    }
+                });
+                alertDialog.show();*/
+                // btnActivate.setVisibility(View.GONE);
+                //layoutOTP.setVisibility(View.GONE);
+
+            }
+
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(RegisterPage.this,
+                    "Varifying OTP Please wait", "");
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... text) {
+            //finalResult.setText(text[0]);
+
+        }
+    }
+
+    private class DownloadMasterTables extends AsyncTask<String, String, String> {
+
+        private String resp;
+//        ProgressDialog progressDialog;
+
+        @Override
+        protected String doInBackground(String... params) {
+            publishProgress("Sleeping..."); // Calls onProgressUpdate()
+
+
+            String strResult = new String();
+
+            try {
+
+
+                SoapProxy proxy = new SoapProxy(RegisterPage.this);
+                Parser parseResponse = new Parser(RegisterPage.this);
+                String[] tableName = {"CA_Farmer_Details", "CA_Farmer_Registered_Crops", "Master_Questions", "Master_Options"};
+                for (int i = 0; i < 4; i++) {
+
+                    strResult = proxy.DownloadMasterTables(tableName[i], appUser);
+
+                    if (strResult.equalsIgnoreCase("NoUpdates")) {
+                    } else if (strResult.equalsIgnoreCase("Failure")) {
+                        strResult = "InternetconectionProblem";
+                    } else if (strResult.equalsIgnoreCase("Invalid OTP")) {
+                        strResult = "Invalid OTP";
+                    } else if (strResult.equalsIgnoreCase("No Data")) {
+                        strResult = "No Data";
+                    } else {
+                        System.out.println(strResult);
+                        parseResponse.ParseJsonMasterTables(strResult, tableName[i], appUser);
+
+                    }
+                }
+                String[] seasonTables = {"Master_FarmerQuestionnaire_SeasonWise", "Master_Season", "Master_Month"};
+
+                strResult = proxy.downloadSeasonWiseQuestionnaire("Vijay", 01);
+
+                if (strResult.equalsIgnoreCase("NoUpdates")) {
+                } else if (strResult.equalsIgnoreCase("Failure")) {
+                    strResult = "InternetconectionProblem";
+                } else if (strResult.equalsIgnoreCase("Invalid OTP")) {
+                    strResult = "Invalid OTP";
+                } else if (strResult.equalsIgnoreCase("No Data")) {
+                    strResult = "No Data";
+                } else {
+                    System.out.println(strResult);
+                        parseResponse.ParseJsonMasterSeasonTables(strResult, seasonTables, appUser);
+                }
+
+                System.out.println(strResult);
+            } catch (Exception e) {
+                e.printStackTrace();
+                strResult = "InternetconectionProblem";
+            }
+            return strResult;
+
+        }
+
+
+        @Override
+        protected void onPostExecute(String strResult) {
+            // execution of result of Long time consuming operation
+//            progressDialog.dismiss();
+            // finalResult.setText(result);
+
+            if (strResult.equals("Error")) {
+                Toast.makeText(RegisterPage.this, "Internet Connection unavailable", Toast.LENGTH_LONG).show();
+            } else if (strResult.equals("InternetconectionProblem")) {
+                Toast.makeText(RegisterPage.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+            } else if (strResult.equals("Invalid OTP")) {
+                Toast.makeText(RegisterPage.this, "Please enter valid OTP", Toast.LENGTH_LONG).show();
+                android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
+                        RegisterPage.this).create();
+                alertDialog.setTitle("Alert :");
+                alertDialog.setMessage("Activation OTP has been sent to mobile number " + strResult + "");
+                alertDialog.setButton("ಸರಿ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialog.show();
+            }//CCE_FormOne_SurveyNumber_Details
+            else {
+
+                long res = baseService.UpdateMobileNumber(ContactNumber, edtUserName.getText().toString());
 
                 // new ActivationFeedBack().execute();
                 //Toast.makeText(getApplicationContext(), "User activated", Toast.LENGTH_SHORT).show();
@@ -656,17 +668,17 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
                 alertDialog.setTitle("Alert :");
-                alertDialog.setMessage("User Activated " );
+                alertDialog.setMessage("User Activated ");
                 alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //new DownloadConfigurationFile().execute();
-                        appUserDetails=baseService.getAppUserDetails();
-                        if(appUserDetails!=null){
+                        appUserDetails = baseService.getAppUserDetails();
+                        if (appUserDetails != null) {
                             edtUserName.setText(appUserDetails.getUserID());
                             edtPassword.setText(appUserDetails.getPassword());
 
-                                 }
-                        Intent i=new Intent(RegisterPage.this,MainActivity.class);
+                        }
+                        Intent i = new Intent(RegisterPage.this, MainActivity.class);
                         Bundle mBundle = new Bundle();
                         mBundle.putSerializable(PAR_KEY, appUserDetails);
                         i.putExtras(mBundle);
@@ -684,8 +696,8 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(RegisterPage.this,
-                    "Downloading Master Tables Please Wait..!","");
+//            progressDialog = ProgressDialog.show(RegisterPage.this,
+//                    "Downloading Master Tables Please Wait..!", "");
         }
 
 
@@ -708,21 +720,21 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
 
             String strResult = new String();
-            String[] RiskProfillingWorksTableName={"Risk_Profilling", "Farmer"};
-            for(int i=0;i<2;i++)
+            String[] RiskProfillingWorksTableName = {"Risk_Profilling", "Farmer"};
+            for (int i = 0; i < 2; i++)
                 try {
 
                     SoapProxy proxy = new SoapProxy(RegisterPage.this);
                     Parser parseResponse = new Parser(RegisterPage.this);
 
-                    strResult=proxy.DownloadConfigure(appUser,IMEI);
-                    if(strResult.equalsIgnoreCase("NoUpdates")){
+                    strResult = proxy.DownloadConfigure(appUser, IMEI);
+                    if (strResult.equalsIgnoreCase("NoUpdates")) {
 
-                    }else if(strResult.equalsIgnoreCase("Failure")){
-                        strResult="InternetconectionProblem";
-                    }else if(strResult.equalsIgnoreCase("Invalid user")){
-                        strResult="Invalid user";
-                    }else{
+                    } else if (strResult.equalsIgnoreCase("Failure")) {
+                        strResult = "InternetconectionProblem";
+                    } else if (strResult.equalsIgnoreCase("Invalid user")) {
+                        strResult = "Invalid user";
+                    } else {
                         System.out.println(strResult);
                         parseResponse.ParseXmlConfigurationFile(strResult);
                     }
@@ -745,13 +757,12 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
             // finalResult.setText(result);
 
 
-            if(strResult.equals("Error")) {
+            if (strResult.equals("Error")) {
                 Toast.makeText(RegisterPage.this, "Internet Connection unavailable", Toast.LENGTH_LONG).show();
-            }else if(strResult.equals("InternetconectionProblem")) {
+            } else if (strResult.equals("InternetconectionProblem")) {
                 Toast.makeText(RegisterPage.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
-            }
-            else if(strResult.equals("Invalid User")) {
-               // Toast.makeText(RegisterPage.this, "Please enter valid OTP", Toast.LENGTH_LONG).show();
+            } else if (strResult.equals("Invalid User")) {
+                // Toast.makeText(RegisterPage.this, "Please enter valid OTP", Toast.LENGTH_LONG).show();
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
                 alertDialog.setTitle("Alert :");
@@ -763,13 +774,13 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 });
                 alertDialog.show();
             }//CCE_FormOne_SurveyNumber_Details
-            else{
+            else {
 
 
                 android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(
                         RegisterPage.this).create();
                 alertDialog.setTitle("Alert :");
-                alertDialog.setMessage("Configuration file downloaded" );
+                alertDialog.setMessage("Configuration file downloaded");
                 alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         new DownloadConfigurationFile().execute();

@@ -78,6 +78,9 @@ public class WebServiceConstants {
 	public static final String DOWNLOAD_CONFIGURATION_FILE_METHOD="DownloadConfigurationFile";
 	public static String DOWNLOAD_CONFIGURATION_FILE_METHOD_REQRESULT="DownloadConfigurationFileResult";
 
+	public static final String DOWNLOAD_SEASON_WISE_QUESTIONNAIRE_DATA_METHOD= "DownloadSeasonWiseQuestionnaireData";
+	public static final String DOWNLOAD_SEASON_WISE_QUESTIONNAIRE_DATA_METHOD_RESULT= "DownloadSeasonWiseQuestionnaireDataResult";
+
 
 }
 

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.ferooz.horticulture.LandDetails.LandCropDetails;
+import com.example.ferooz.horticulture.SeasonDetails.SeasonWiseQuestions;
 import com.example.ferooz.horticulture.pojoclasses.AppUserDetails;
 
 import java.util.ArrayList;
@@ -121,6 +122,20 @@ public class MainActivity extends AppCompatActivity
                         in12.putExtra("CropCode",CropCode);
                         startActivity(in12);
                         break;
+
+
+                    case 7:
+                        Intent in17= new Intent(getApplicationContext(), SeasonWiseQuestions.class);
+                        Bundle mBundleSeason = new Bundle();
+                        mBundleSeason.putSerializable(PAR_KEY, appUserDetails);
+                        in17.putExtras(mBundleSeason);
+                        in17.putExtra("CropCode",CropCode);
+                        startActivity(in17);
+                        break;
+
+
+
+
                     default: Intent in=new Intent(getApplicationContext(),Login.class);
                         //in.putExtra("arti",txts.getText().toString());
                         startActivity(in);
@@ -254,11 +269,12 @@ public class MainActivity extends AppCompatActivity
                 R.drawable.album4,
                 R.drawable.album5,
                 R.drawable.album6,
-                R.drawable.album7/*,
-                R.drawable.album8,
-                R.drawable.album9,
+                R.drawable.album7,
+                R.drawable.album8
+              /*  R.drawable.album9,
                 R.drawable.album10,
-                R.drawable.album11*/};
+                R.drawable.album11*/
+        };
 
         Album a = new Album("Plant Protection", 13, covers[0]);
         albumList.add(a);
@@ -281,15 +297,15 @@ public class MainActivity extends AppCompatActivity
         a = new Album("Weather Advisory", 11, covers[6]);
         albumList.add(a);
 
-     /*   a = new Album("Legend", 14, covers[7]);
+     a = new Album("Season Question", 14, covers[7]);
         albumList.add(a);
 
-        a = new Album("Hello", 11, covers[8]);
+      /*  a = new Album("Hello", 11, covers[8]);
         albumList.add(a);
 
         a = new Album("Greatest Hits", 17, covers[9]);
-        albumList.add(a);
-*/
+        albumList.add(a);*/
+
         adapter.notifyDataSetChanged();
     }
 

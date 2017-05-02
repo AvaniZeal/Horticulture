@@ -211,5 +211,56 @@ public class DBConstants {
 	public static final String COLUMN_ASK_EXPERT_QUERY_STATUS="status";
 
 
+	//Season Wise Questionnaire
+	public static final String TABLE_NAME_MASTER_FARMERQUESTIONNAIRE_SEASONWISE="Master_FarmerQuestionnaire_SeasonWise";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_LANGUAGEID="LanguageId";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_SEASONID="SeasonId";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_CROPID="CropId";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTIONID="QuestionId";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTIONORDER="QuestionOrder";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTION="Question";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTIONIMAGECOUNT="QuestionImageCount";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTIONVIDEOCOUNT="QuestionVideoCount";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_QUESTIONAUDIOCOUNT="QuestionAudioCount";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_CREATEDBY="CreatedBy";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_CREATEDON="CreatedOn";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_UPDATEDBY="UpdatedBy";
+	public static final String COLUMN_MASTER_FARMERQUESTIONNAIRE_SEASONWISE_UPDATEDON="UpdatedOn";
+
+	public static final String TABLE_NAME_FARMERQUESTIONNAIREANSWERS_SEASONWISE="FarmerQuestionnaireAnswers_SeasonWise";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_SEASONID="SeasonId";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_CROPID="CropId";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_QUESTIONID="QuestionId";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_FARMERID="FarmerId";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_FARMERRESPONSE="FarmerResponse";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_RESPONSEIMAGEPATH="ResponseImagePath";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_IMAGECOUNT="ImageCount";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_RESPONSEVIDEOPATH="ResponseVideoPath";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_VIDEOCOUNT="VideoCount";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_RESPONSEAUDIOPATH="ResponseAudioPath";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_AUDIOCOUNT="AudioCount";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_CREATEDBY="CreatedBy";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_CREATEDON="CreatedOn";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_UPDATEDBY="UpdatedBy";
+	public static final String COLUMN_FARMERQUESTIONNAIREANSWERS_SEASONWISE_UPDATEDON="UpdatedOn";
+
+
+
+	public static final String TABLE_NAME_MASTER_SEASON="Master_Season";
+	public static final String COLUMN_MASTER_SEASON_SEASONID="SeasonId";
+	public static final String COLUMN_MASTER_SEASON_SEASONNAME_EN="SeasonName_EN";
+	public static final String COLUMN_MASTER_SEASON_SEASONNAME_HI="SeasonName_HI";
+	public static final String COLUMN_MASTER_SEASON_SEASONSTART="SeasonStart";
+	public static final String COLUMN_MASTER_SEASON_SEASONEND="SeasonEnd";
+
+
+
+	public static final String TABLE_NAME_MASTER_MONTH="Master_Month";
+	public static final String COLUMN_MASTER_MONTH_MONTHID="MonthId";
+	public static final String COLUMN_MASTER_MONTH_MONTHNAME_EN="MonthName_EN";
+	public static final String COLUMN_MASTER_MONTH_MONTHNAME_HI="MonthName_HI";
+	public static final String COLUMN_MASTER_MONTH_NO_OF_DAYS="No_Of_Days";
+	public static final String COLUMN_MASTER_MONTH_YEARTYPE="YearType";
+
 
 }

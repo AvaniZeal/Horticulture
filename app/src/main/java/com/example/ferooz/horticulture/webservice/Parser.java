@@ -8,8 +8,11 @@ import com.example.ferooz.horticulture.pojoclasses.AppUserDetails;
 import com.example.ferooz.horticulture.pojoclasses.Configure_Files_Details;
 import com.example.ferooz.horticulture.pojoclasses.FarmerDetails;
 import com.example.ferooz.horticulture.pojoclasses.Farmer_Registered_Crop;
+import com.example.ferooz.horticulture.pojoclasses.Master_Month;
 import com.example.ferooz.horticulture.pojoclasses.Master_Options;
 import com.example.ferooz.horticulture.pojoclasses.Master_Questions;
+import com.example.ferooz.horticulture.pojoclasses.Master_Season;
+import com.example.ferooz.horticulture.pojoclasses.Master_SeasonWise_Questions;
 import com.example.ferooz.horticulture.pojoclasses.RiskProfilling;
 import com.example.ferooz.horticulture.pojoclasses.RiskProfillingQuestionnaire;
 import com.example.ferooz.horticulture.pojoclasses.RiskProfillingQuestionnaireOption;
@@ -36,16 +39,19 @@ import javax.xml.parsers.ParserConfigurationException;
 public class Parser {
 
     private Context context;
-    public Parser(Context pContext){
+
+    public Parser(Context pContext) {
         this.context = pContext;
     }
+
     Document doc;
-    String date=new SimpleDateFormat( "d/M/yyyy" ).format(new Date(System.currentTimeMillis()));
-    BaseService baseService=new BaseService(context);
+    String date = new SimpleDateFormat("d/M/yyyy").format(new Date(System.currentTimeMillis()));
+    BaseService baseService = new BaseService(context);
+
     public void ParseXml(String strResult, String fileName) {
 
 
-        try{
+        try {
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder;
@@ -54,7 +60,7 @@ public class Parser {
                     .parse(new InputSource(new StringReader(strResult)));
             doc.getDocumentElement().normalize();
 
-             if(fileName.equalsIgnoreCase("Risk_Profilling")){
+            if (fileName.equalsIgnoreCase("Risk_Profilling")) {
                 //baseService.deleteTableContent(DBConstants.TABLE_NAME_RISK_PROFILLING);
                 NodeList tablePE = doc.getElementsByTagName("Row");
                 for (int k = 0; k < tablePE.getLength(); k++) {
@@ -69,115 +75,115 @@ public class Parser {
                         } else if (temp.getNodeName().equalsIgnoreCase("Farmer_Id")) {
                             System.out.println(temp.getTextContent());
                             rp.setFarmer_Id((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("URN_No")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("URN_No")) {
                             System.out.println(temp.getTextContent());
                             rp.setURN_No(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("farm_coordinate_info")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("farm_coordinate_info")) {
                             System.out.println(temp.getTextContent());
                             rp.setFarm_coordinate_info((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("farm_coordinate_info_exact")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("farm_coordinate_info_exact")) {
                             System.out.println(temp.getTextContent());
                             rp.setFarm_coordinate_info_exact(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("video_coordinate")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("video_coordinate")) {
                             System.out.println(temp.getTextContent());
                             rp.setVideo_coordinate((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("answer_information")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("answer_information")) {
                             System.out.println(temp.getTextContent());
                             rp.setAnswer_information(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("date_of_survey")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("date_of_survey")) {
                             System.out.println(temp.getTextContent());
                             rp.setDate_of_survey((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("field_no")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("field_no")) {
                             System.out.println(temp.getTextContent());
                             rp.setField_no(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("district_name")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("district_name")) {
                             System.out.println(temp.getTextContent());
                             rp.setDistrict_name((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("hobli_name")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("hobli_name")) {
                             System.out.println(temp.getTextContent());
                             rp.setHobli_name(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("insured_area_in_acre")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("insured_area_in_acre")) {
                             System.out.println(temp.getTextContent());
                             rp.setInsured_area_in_acre((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("pruning_date")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("pruning_date")) {
                             System.out.println(temp.getTextContent());
                             rp.setPruning_date(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("plot_survey_no")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("plot_survey_no")) {
                             System.out.println(temp.getTextContent());
                             rp.setPlot_survey_no((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("variety")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("variety")) {
                             System.out.println(temp.getTextContent());
                             rp.setVariety(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("approx_no_of_vines")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("approx_no_of_vines")) {
                             System.out.println(temp.getTextContent());
                             rp.setApprox_no_of_vines((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("crop_monitoring_data")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("crop_monitoring_data")) {
                             System.out.println(temp.getTextContent());
                             rp.setCrop_monitoring_data((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("center_image_coordinates")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("center_image_coordinates")) {
                             System.out.println(temp.getTextContent());
                             rp.setCenter_image_coordinates((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
                             System.out.println(temp.getTextContent());
                             rp.setTimestamp(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("risk_profiling_status")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("risk_profiling_status")) {
                             System.out.println(temp.getTextContent());
                             rp.setRisk_profiling_status((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("upload_status")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("upload_status")) {
                             System.out.println(temp.getTextContent());
                             rp.setUpload_status((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("image_upload_status")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("image_upload_status")) {
                             System.out.println(temp.getTextContent());
                             rp.setImage_upload_status((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("validation_string")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("validation_string")) {
                             System.out.println(temp.getTextContent());
                             rp.setValidation_string(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("crop")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("crop")) {
                             System.out.println(temp.getTextContent());
                             rp.setCrop(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("CutofDate")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("CutofDate")) {
                             System.out.println(temp.getTextContent());
                             rp.setCutofDate(temp.getTextContent());
-                        }else if (temp.getNodeName().equalsIgnoreCase("RiskScore")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("RiskScore")) {
                             System.out.println(temp.getTextContent());
                             rp.setRiskScore((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("IsActive")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("IsActive")) {
                             System.out.println(temp.getTextContent());
                             rp.setIsActive((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("WBCISPayout")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("WBCISPayout")) {
                             System.out.println(temp.getTextContent());
                             rp.setWBCISPayout((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("CreatedOn")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("CreatedOn")) {
                             System.out.println(temp.getTextContent());
                             rp.setCreatedOn((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("CreatedBy")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("CreatedBy")) {
                             System.out.println(temp.getTextContent());
                             rp.setCreatedBy((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("UpdatedOn")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("UpdatedOn")) {
                             System.out.println(temp.getTextContent());
                             rp.setUpdatedOn((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("UpdatedBy")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("UpdatedBy")) {
                             System.out.println(temp.getTextContent());
                             rp.setUpdatedBy((temp.getTextContent()));
-                        }else if (temp.getNodeName().equalsIgnoreCase("VarietyId")) {
+                        } else if (temp.getNodeName().equalsIgnoreCase("VarietyId")) {
                             System.out.println(temp.getTextContent());
-                            if(!temp.getTextContent().equals("")){
-                                rp.setVarietyId(Integer.parseInt(temp.getTextContent()));}
-                            else{
+                            if (!temp.getTextContent().equals("")) {
+                                rp.setVarietyId(Integer.parseInt(temp.getTextContent()));
+                            } else {
                                 rp.setVarietyId(Integer.parseInt("0"));
                             }
                         }
                     }
-                    boolean isInDb=baseService.isInDb(rp);
-                    if(isInDb){
+                    boolean isInDb = baseService.isInDb(rp);
+                    if (isInDb) {
                         baseService.UpdateRiskProfilling(rp);
-                    }else{
+                    } else {
                         baseService.insertIntoRiskProfilling(rp);
                     }
 
                 }
 
-            }else if(fileName.equalsIgnoreCase("Farmer")){/*
+            } else if (fileName.equalsIgnoreCase("Farmer")) {/*
 
                 //baseService.deleteTableContent(DBConstants.TABLE_NAME_FARMER_DETAILS);
                 NodeList tablePE = doc.getElementsByTagName("Row");
@@ -271,111 +277,110 @@ public class Parser {
 
                 }
 
-            */}
+            */
+            } else if (fileName.equalsIgnoreCase("question_structure")) {
+                baseService.deleteTableContent(DBConstants.TABLE_NAME_RISK_PROFILLING_QUESTIONNAIRE);
 
-             else if(fileName.equalsIgnoreCase("question_structure")){
-                 baseService.deleteTableContent(DBConstants.TABLE_NAME_RISK_PROFILLING_QUESTIONNAIRE);
+                NodeList tablePE = doc.getElementsByTagName("Row");
+                for (int k = 0; k < tablePE.getLength(); k++) {
+                    RiskProfillingQuestionnaire rpq = new RiskProfillingQuestionnaire();
+                    Node node = tablePE.item(k);
+                    for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+                        Node temp = node.getChildNodes().item(i);
 
-                 NodeList tablePE = doc.getElementsByTagName("Row");
-                 for (int k = 0; k < tablePE.getLength(); k++) {
-                     RiskProfillingQuestionnaire rpq= new RiskProfillingQuestionnaire();
-                     Node node = tablePE.item(k);
-                     for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-                         Node temp = node.getChildNodes().item(i);
+                        if (temp.getNodeName().equalsIgnoreCase("id")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setId(Integer.parseInt((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("question_number")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setQuestion_number(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("question")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setQuestion((temp.getTextContent()));
+                        } else if (temp.getNodeName().equalsIgnoreCase("options")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setOptions((temp.getTextContent()));
+                        } else if (temp.getNodeName().equalsIgnoreCase("marks")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setMarks(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("image_count")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setImage_count(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("helping_text")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setHelping_text(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("stage")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setStage(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("video_count")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setVideo_count(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("crop")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setCrop(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("key_identifier")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setKey_identifier(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("take_image_in_bulk")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setTake_image_in_bulk(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("hint_text_in_bulk")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setHint_text_in_bulk(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
+                            System.out.println(temp.getTextContent());
+                            rpq.setTimestamp(((temp.getTextContent())));
+                        }
+                    }
+                    baseService.insertIntoRiskProfillingQuestionnaire(rpq);
 
-                         if (temp.getNodeName().equalsIgnoreCase("id")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setId(Integer.parseInt((temp.getTextContent())));
-                         } else if (temp.getNodeName().equalsIgnoreCase("question_number")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setQuestion_number(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("question")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setQuestion((temp.getTextContent()));
-                         }else if (temp.getNodeName().equalsIgnoreCase("options")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setOptions((temp.getTextContent()));
-                         }else if (temp.getNodeName().equalsIgnoreCase("marks")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setMarks(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("image_count")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setImage_count(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("helping_text")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setHelping_text(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("stage")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setStage(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("video_count")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setVideo_count(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("crop")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setCrop(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("key_identifier")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setKey_identifier(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("take_image_in_bulk")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setTake_image_in_bulk(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("hint_text_in_bulk")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setHint_text_in_bulk(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
-                             System.out.println(temp.getTextContent());
-                             rpq.setTimestamp(((temp.getTextContent())));
-                         }
-                     }
-                     baseService.insertIntoRiskProfillingQuestionnaire(rpq);
+                }
 
-                 }
+            } else if (fileName.equalsIgnoreCase("Options")) {
+                baseService.deleteTableContent(DBConstants.TABLE_NAME_RISK_PROFILLING_QUESTIONNAIRE_OPTION);
+                NodeList tablePE = doc.getElementsByTagName("Row");
+                for (int k = 0; k < tablePE.getLength(); k++) {
+                    RiskProfillingQuestionnaireOption rpo = new RiskProfillingQuestionnaireOption();
+                    Node node = tablePE.item(k);
+                    for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+                        Node temp = node.getChildNodes().item(i);
 
-             }else if(fileName.equalsIgnoreCase("Options")){
-                 baseService.deleteTableContent(DBConstants.TABLE_NAME_RISK_PROFILLING_QUESTIONNAIRE_OPTION);
-                 NodeList tablePE = doc.getElementsByTagName("Row");
-                 for (int k = 0; k < tablePE.getLength(); k++) {
-                     RiskProfillingQuestionnaireOption rpo= new RiskProfillingQuestionnaireOption();
-                     Node node = tablePE.item(k);
-                     for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-                         Node temp = node.getChildNodes().item(i);
+                        if (temp.getNodeName().equalsIgnoreCase("id")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setId(Integer.parseInt((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("name")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setName((temp.getTextContent()));
+                        } else if (temp.getNodeName().equalsIgnoreCase("right_option")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setRight_option(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("question_id")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setQuestion_id(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("marks")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setMarks(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("key_identifier")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setKey_identifier(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("need_to_hide_any_question_after_this")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setNeed_to_hide_any_question_after_this(((temp.getTextContent())));
+                        } else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
+                            System.out.println(temp.getTextContent());
+                            rpo.setTimestamp(((temp.getTextContent())));
+                        }
+                    }
+                    baseService.insertIntoRiskProfillingQuestionnaireOption(rpo);
 
-                         if (temp.getNodeName().equalsIgnoreCase("id")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setId(Integer.parseInt((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("name")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setName((temp.getTextContent()));
-                         }else if (temp.getNodeName().equalsIgnoreCase("right_option")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setRight_option(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("question_id")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setQuestion_id(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("marks")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setMarks(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("key_identifier")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setKey_identifier(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("need_to_hide_any_question_after_this")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setNeed_to_hide_any_question_after_this(((temp.getTextContent())));
-                         }else if (temp.getNodeName().equalsIgnoreCase("timestamp")) {
-                             System.out.println(temp.getTextContent());
-                             rpo.setTimestamp(((temp.getTextContent())));
-                         }
-                     }
-                     baseService.insertIntoRiskProfillingQuestionnaireOption(rpo);
+                }
 
-                 }
+            } else {
 
-             }else{
-
-             }
+            }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -385,9 +390,8 @@ public class Parser {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
     public void ParseXmlAppUser(String strResult, String contactNumber) throws Exception {
-        AppUserDetails appUser=new AppUserDetails();
+        AppUserDetails appUser = new AppUserDetails();
         try {
             BaseService baseService = new BaseService(context);
             baseService.deleteTableContent(DBConstants.TABLE_NAME_APP_USER_DETAILS_DETAILS);
@@ -410,14 +414,14 @@ public class Parser {
                     } else if (temp.getNodeName().equalsIgnoreCase("Password")) {
                         System.out.println(temp.getTextContent());
                         appUser.setPassword((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("IMEI")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("IMEI")) {
                         System.out.println(temp.getTextContent());
                         appUser.setIMEI(temp.getTextContent());
                     }
                 }
                 appUser.setLastLoginDate(date);
                 appUser.setLastLoginId(appUser.getUserID());
-               // appUser.setUser_Contact(contactNumber);
+                // appUser.setUser_Contact(contactNumber);
                 baseService.saveAppUser(appUser);
             }
 
@@ -465,40 +469,40 @@ public class Parser {
                     } else if (temp.getNodeName().equalsIgnoreCase("VersionNo")) {
                         System.out.println(temp.getTextContent());
                         obj.setVersionNo((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("versionType")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("versionType")) {
                         System.out.println(temp.getTextContent());
                         obj.setVersionType((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("ApplicationURL")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("ApplicationURL")) {
                         obj.setApplicationURL(temp.getTextContent());
                         System.out.println(temp.getTextContent());
-                    }else if (temp.getNodeName().equalsIgnoreCase("WebServiceURL")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("WebServiceURL")) {
                         obj.setWebServiceURL((temp.getTextContent()));
                         System.out.println(temp.getTextContent());
-                    }else if (temp.getNodeName().equalsIgnoreCase("DateofExpairy")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("DateofExpairy")) {
                         System.out.println(temp.getTextContent());
                         obj.setDateofExpairy((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("SMSreceiverMobNo")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("SMSreceiverMobNo")) {
                         System.out.println(temp.getTextContent());
                         obj.setSMSreceiverMobNo(temp.getTextContent());
-                    }else if (temp.getNodeName().equalsIgnoreCase("Notification")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("Notification")) {
                         System.out.println(temp.getTextContent());
                         obj.setNotification((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("ConfigurationUpdatedDate")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("ConfigurationUpdatedDate")) {
                         System.out.println(temp.getTextContent());
                         obj.setConfigurationUpdatedDate(date);
-                    }else if (temp.getNodeName().equalsIgnoreCase("ConfigurationUpdatedBy")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("ConfigurationUpdatedBy")) {
                         System.out.println(temp.getTextContent());
                         obj.setConfigurationUpdatedBy((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("ApplicableTo")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("ApplicableTo")) {
                         System.out.println(temp.getTextContent());
                         obj.setApplicableTo((temp.getTextContent()));
-                    }else if (temp.getNodeName().equalsIgnoreCase("IsFunctionable")) {
+                    } else if (temp.getNodeName().equalsIgnoreCase("IsFunctionable")) {
                         System.out.println(temp.getTextContent());
                         obj.setIsFunctional((temp.getTextContent()));
                     }
 
                 }
-                long res=baseService.insertIntoConfigureFile(obj);//
+                long res = baseService.insertIntoConfigureFile(obj);//
 
             }
 
@@ -519,8 +523,6 @@ public class Parser {
         }
 
 
-
-
     }
 
 
@@ -532,20 +534,20 @@ public class Parser {
                 JSONObject jsonObj = new JSONObject(strResult);
                 // Getting JSON Array node
                 JSONArray appUserDetails = jsonObj.getJSONArray("Table1");
-                AppUserDetails obj=null;
+                AppUserDetails obj = null;
                 // looping through All Contacts
                 for (int i = 0; i < appUserDetails.length(); i++) {
                     JSONObject c = appUserDetails.getJSONObject(i);
-                    obj=new AppUserDetails();
+                    obj = new AppUserDetails();
                     obj.setUserID(c.getString("LoginId"));
                     obj.setPassword(c.getString("Password"));
                     obj.setIMEI(c.getString("IMEI"));
                     //obj.set(c.getString("MobileNo"));
 
-                    long res=baseService.SaveAppUserDetails(obj);
+                    long res = baseService.SaveAppUserDetails(obj);
 
                 }
-            }  catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -554,19 +556,19 @@ public class Parser {
     public void ParseJsonMasterTables(String strResult, String tableName, AppUserDetails appUser) {
 
 
-        if(tableName.equals("CA_Farmer_Details")){
+        if (tableName.equals("CA_Farmer_Details")) {
 
             if (strResult != null) {
-               baseService.deleteTableContent(DBConstants.TABLE_NAME_FARMER_DETAILS);
+                baseService.deleteTableContent(DBConstants.TABLE_NAME_FARMER_DETAILS);
                 try {
                     JSONObject jsonObj = new JSONObject(strResult);
                     // Getting JSON Array node
                     JSONArray appUserDetails = jsonObj.getJSONArray("Table");
-                    FarmerDetails obj=null;
+                    FarmerDetails obj = null;
                     // looping through All Contacts
                     for (int i = 0; i < appUserDetails.length(); i++) {
                         JSONObject c = appUserDetails.getJSONObject(i);
-                        obj=new FarmerDetails();
+                        obj = new FarmerDetails();
                         obj.setUserid(c.getString("FarmerId"));
                         obj.setUserName(c.getString("Farmer_Name"));
                         obj.setMobile_no(c.getString("MobileNo"));
@@ -589,11 +591,11 @@ public class Parser {
                             long res = baseService.SaveFarmerDetails(obj);
                         }*/
                     }
-                }  catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }else if(tableName.equals("CA_Farmer_Registered_Crops")){
+        } else if (tableName.equals("CA_Farmer_Registered_Crops")) {
 
             if (strResult != null) {
 
@@ -601,36 +603,30 @@ public class Parser {
                     JSONObject jsonObj = new JSONObject(strResult);
                     // Getting JSON Array node
                     JSONArray appUserDetails = jsonObj.getJSONArray("Table");
-                    Farmer_Registered_Crop obj=null;
+                    Farmer_Registered_Crop obj = null;
                     // looping through All Contacts
                     for (int i = 0; i < appUserDetails.length(); i++) {
                         JSONObject c = appUserDetails.getJSONObject(i);
-                        obj=new Farmer_Registered_Crop();
+                        obj = new Farmer_Registered_Crop();
                         obj.setUserID(c.getString("FarmerId"));
                         obj.setCropCode(c.getInt("Crop_Code"));
-
-
-                        long res=baseService.SaveFarmerRegisteredCropDetails(obj);
-
+                        long res = baseService.SaveFarmerRegisteredCropDetails(obj);
                     }
-                }  catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
-        }else if(tableName.equals("Master_Questions")){
-
+        } else if (tableName.equals("Master_Questions")) {
             if (strResult != null) {
-
                 try {
                     JSONObject jsonObj = new JSONObject(strResult);
                     // Getting JSON Array node
                     JSONArray appUserDetails = jsonObj.getJSONArray("Table");
-                    Master_Questions obj=null;
+                    Master_Questions obj = null;
                     // looping through All Contacts
                     for (int i = 0; i < appUserDetails.length(); i++) {
                         JSONObject c = appUserDetails.getJSONObject(i);
-                        obj=new Master_Questions();
+                        obj = new Master_Questions();
                         obj.setLanguageId(c.getInt("LanguageId"));
                         obj.setCrop_Code(c.getInt("Crop_Code"));
                         obj.setQuestionId(c.getInt("QuestionId"));
@@ -642,30 +638,23 @@ public class Parser {
                         obj.setVideo_count(c.getString("video_Count"));
                         obj.setTake_Image_in_Bulk(c.getString("Take_Image_in_Bulk"));
                         obj.setHint_Text_in_Bulk(c.getString("Hint_Text_in_Bulk"));
-
-
-                        long res=baseService.SaveMasterQuestions(obj);
-
+                        long res = baseService.SaveMasterQuestions(obj);
                     }
-                }  catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
-        }else if(tableName.equals("Master_Options")){
-
-
+        } else if (tableName.equals("Master_Options")) {
             if (strResult != null) {
-
                 try {
                     JSONObject jsonObj = new JSONObject(strResult);
                     // Getting JSON Array node
                     JSONArray appUserDetails = jsonObj.getJSONArray("Table");
-                    Master_Options obj=null;
+                    Master_Options obj = null;
                     // looping through All Contacts
                     for (int i = 0; i < appUserDetails.length(); i++) {
                         JSONObject c = appUserDetails.getJSONObject(i);
-                        obj=new Master_Options();
+                        obj = new Master_Options();
                         obj.setLanguageId(c.getInt("LanguageId"));
                         obj.setQuestionId(c.getInt("QuestionId"));
                         obj.setOptionId(c.getInt("OptionId"));
@@ -675,17 +664,122 @@ public class Parser {
                         obj.setCreatedBy(c.getString("CreatedBy"));
                         obj.setUpdatedOn(c.getString("ModifiedDate"));
                         obj.setUpdatedBy(c.getString("ModifiedBy"));
-
-                        long res=baseService.SaveMasterOptions(obj);
-
+                        long res = baseService.SaveMasterOptions(obj);
                     }
-                }  catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
-        }else{
-
+        } else {
         }
     }
+
+    public void ParseJsonMasterSeasonTables(String strResult, String[] tableName, AppUserDetails appUser) {
+        try {
+            for (int i = 0; i < tableName.length; i++) {
+                JSONObject jsonObj = new JSONObject(strResult);
+                if (tableName[i].equals("Master_FarmerQuestionnaire_SeasonWise")) {
+                    JSONArray appUserDetails = jsonObj.getJSONArray("Master_FarmerQuestionnaire_SeasonWise");
+                    parseSeasonQuestionnaire(appUserDetails);
+                } else if (tableName[i].equals("Master_Season")) {
+                    JSONArray appUserDetails = jsonObj.getJSONArray("Master_Season");
+                    parseMasterSeason(appUserDetails);
+                } else if (tableName[i].equals("Master_Month")) {
+                    JSONArray appUserDetails = jsonObj.getJSONArray("Master_Month");
+                    parseMasterMonth(appUserDetails);
+                }
+            }
+        } catch (JSONException e) {
+        }
+    }
+
+    public void parseSeasonQuestionnaire(JSONArray jsonObject) {
+        Master_SeasonWise_Questions questions = null;
+        Integer season = 1;
+        Integer s1 = 1;
+        Integer s2 = 1;
+        Integer s3 = 1;
+        Integer s4 = 1;
+
+        try {
+            for (int i = 0; i < jsonObject.length(); i++) {
+                questions = new Master_SeasonWise_Questions();
+                JSONObject object = jsonObject.getJSONObject(i);
+                questions.setLanguageId(object.getInt("LanguageId"));
+                questions.setQuestion(object.getString("Question"));
+                questions.setQuestionId(object.getInt("QuestionId"));
+                questions.setCropId(object.getInt("CropId"));
+                questions.setSeasonId(object.getInt("SeasonId"));
+                season = questions.getSeasonId();
+                if (season == 1) {
+                    questions.setQuestionOrder(s1);
+                    s1++;
+                } else if (season == 2) {
+                    questions.setQuestionOrder(s2);
+                    s2++;
+                } else if (season == 3) {
+                    questions.setQuestionOrder(s3);
+                    s3++;
+                } else if (season == 4) {
+                    questions.setQuestionOrder(s4);
+                    s4++;
+                }
+                questions.setQuestionImageCount(object.getInt("QuestionImageCount"));
+                questions.setQuestionVideoCount(object.getInt("QuestionVideoCount"));
+                questions.setQuestionAudioCount(object.getInt("QuestionAudioCount"));
+                questions.setCreatedBy(object.getString("CreatedBy"));
+                questions.setCreatedOn(object.getString("CreatedOn"));
+                questions.setUpdatedBy(object.getString("UpdatedBy"));
+                questions.setUpdatedOn(object.getString("UpdatedOn"));
+                baseService.SaveMasterQuestionsSeasonWise(questions);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void parseMasterSeason(JSONArray jsonObject) {
+        Master_Season season = null;
+        try {
+            for (int i = 0; i < jsonObject.length(); i++) {
+                season = new Master_Season();
+                JSONObject object = jsonObject.getJSONObject(i);
+                season.setSeasonId(object.getInt("SeasonId"));
+                season.setSeasonName_EN(object.getString("SeasonName_EN"));
+                season.setSeasonName_HI(object.getString("SeasonName_HI"));
+                season.setSeasonName_HI(object.getString("SeasonName_KN"));
+                season.setSeasonStart(object.getInt("SeasonStart"));
+                season.setSeasonEnd(object.getInt("SeasonEnd"));
+
+                baseService.SaveMasterSeason(season);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void parseMasterMonth(JSONArray jsonObject) {
+        Master_Month month = null;
+        try {
+            for (int i = 0; i < jsonObject.length(); i++) {
+                month = new Master_Month();
+                JSONObject object = jsonObject.getJSONObject(i);
+                if (object.getString("No_Of_Days").equals("O")) {
+                    month.setMonthId(object.getInt("MonthId"));
+                    month.setMonthName_EN(object.getString("MonthName_EN"));
+                    month.setMonthName_HI(object.getString("MonthName_HI"));
+                    month.setMonthName_KN(object.getString("SeasonName_KN"));
+                    month.setNo_Of_Days(object.getInt("No_Of_Days"));
+                    month.setYearType(object.getString("No_Of_Days"));
+                }
+                baseService.SaveMasterMonth(month);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 }

@@ -171,9 +171,80 @@
 
 
 
+    <table>
+        <schema>
+            <![CDATA[CREATE TABLE Master_FarmerQuestionnaire_SeasonWise
+                          (
+                                LanguageId int,
+                                SeasonId int,
+                                CropId int,
+                                QuestionId int,
+                                QuestionOrder int,
+                                QuestionImageCount int,
+							    QuestionVideoCount int,
+							    QuestionAudioCount int,
+                                Question text,
+                                CreatedBy text,
+                                CreatedOn text,
+                                UpdatedBy text,
+                                UpdatedOn text
+                           )]]>
 
+        </schema>
+    </table>
 
+    <table>
+        <schema>
+            <![CDATA[CREATE TABLE FarmerQuestionnaireAnswers_SeasonWise
+                            (
+                                SeasonId int,
+                                CropId int,
+                                QuestionId int,
+                                FarmerId text,
+                                FarmerResponse text,
+                                ResponseImagePath text,
+                                ImageCount int,
+                                ResponseVideoPath text,
+                                VideoCount int,
+                                ResponseAudioPath text,
+                                AudioCount int,
+                                CreatedBy text,
+                                CreatedOn text,
+                                UpdatedBy text,
+                                UpdatedOn text,
+                                PRIMARY KEY (SeasonId, CropId, QuestionId, FarmerId)
+                            )]]>
 
+        </schema>
+    </table>
 
+    <table>
+        <schema>
+            <![CDATA[CREATE TABLE Master_Season
+                        (
+                            SeasonId int,
+                            SeasonName_EN text,
+                            SeasonName_HI text,
+                            SeasonStart int,
+                            SeasonEnd int
+                        )]]>
+
+        </schema>
+    </table>
+
+    <table>
+        <schema>
+            <![CDATA[CREATE TABLE Master_Month
+                        (
+                            MonthId int,
+                            MonthName_EN text,
+                            MonthName_HI text,
+                            MonthName_KN text,
+                            No_Of_Days int,
+                            YearType text
+                        )]]>
+
+        </schema>
+    </table>
 
 </Databaseinfo>

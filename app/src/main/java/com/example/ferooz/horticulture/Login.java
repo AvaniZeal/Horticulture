@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.ferooz.horticulture.database.BaseService;
 import com.example.ferooz.horticulture.pojoclasses.AppUserDetails;
-import com.example.ferooz.horticulture.webservice.SoapProxy;
 
 public class Login extends AppCompatActivity {
 
@@ -47,7 +46,7 @@ public class Login extends AppCompatActivity {
         }
 
 
-       /* newuser.setOnClickListener(new View.OnClickListener() {
+        newuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(Login.this,RegisterPage.class);
@@ -56,22 +55,25 @@ public class Login extends AppCompatActivity {
 
 
             }
-        });*/
+        });
 
-      /*  login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                SoapProxy proxy=new SoapProxy(Login.this);
-                proxy.DownloadGenericAdvisoryTables(appUserDetails);
+                /*SoapProxy proxy=new SoapProxy(Login.this);
+                proxy.DownloadGenericAdvisoryTables(appUserDetails);*/
 
                 Intent i=new Intent(Login.this,FarmerDetailsActivity.class);
+//                Intent i=new Intent(Login.this,MainActiv.class);
                 Bundle mBundle = new Bundle();
                 mBundle.putSerializable(PAR_KEY, appUserDetails);
-                i.putExtras(mBundle);
+
+                i.putExtra(PAR_KEY,appUserDetails);
+//                i.putExtras(appUserDetails,);
                 startActivity(i);
             }
-        });*/
+        });
 
     }
 

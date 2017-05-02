@@ -524,5 +524,42 @@ public class SoapProxy {
     }
 
 
+    // Seasonwise
+
+    public String downloadSeasonWiseQuestionnaire(String farmerId, Integer languageId){
+        String response = null;
+        try {
+            SoapObject request = new SoapObject(WebServiceConstants.NAMESPACE,
+                    WebServiceConstants.DOWNLOAD_SEASON_WISE_QUESTIONNAIRE_DATA_METHOD);//
+            //request.addProperty("loginId", appUserDetails.getUserID());
+            request.addProperty("FarmerLoginId", "ashwin");
+            request.addProperty("LanguageId", 1);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(
+                    WebServiceConstants.HOST_URRL, 30000000);
+            androidHttpTransport.call(WebServiceConstants.NAMESPACE
+                    + WebServiceConstants.DOWNLOAD_SEASON_WISE_QUESTIONNAIRE_DATA_METHOD, envelope);
+            if (envelope.bodyIn instanceof SoapObject) {
+                SoapObject soapObject = (SoapObject) envelope.bodyIn;
+                response = soapObject.getProperty(
+                        WebServiceConstants.DOWNLOAD_SEASON_WISE_QUESTIONNAIRE_DATA_METHOD_RESULT)
+                        .toString();
+                System.out.println(response);
+            } else if (envelope.bodyIn instanceof SoapFault) {
+
+                SoapFault soapFault = (SoapFault) envelope.bodyIn;
+                response = "Failure";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = "Failure";
+        }
+        return response;
+
+    }
 
 }

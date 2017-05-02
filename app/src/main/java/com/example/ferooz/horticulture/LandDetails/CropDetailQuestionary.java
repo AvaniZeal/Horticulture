@@ -2,11 +2,13 @@ package com.example.ferooz.horticulture.LandDetails;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.util.Calendar;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -26,7 +28,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.ferooz.horticulture.FarmerDetailsActivity;
+
+import com.example.ferooz.horticulture.MainActivity;
 import com.example.ferooz.horticulture.R;
 import com.example.ferooz.horticulture.database.BaseService;
 import com.example.ferooz.horticulture.pojoclasses.AppUserDetails;
@@ -36,7 +39,8 @@ import com.example.ferooz.horticulture.pojoclasses.Land_Crop_Questionnaire_Answe
 import com.example.ferooz.horticulture.pojoclasses.Master_Options;
 import com.example.ferooz.horticulture.pojoclasses.Master_Questions;
 import com.example.ferooz.horticulture.pojoclasses.RiskProfilling;
-
+import com.example.ferooz.horticulture.pojoclasses.RiskProfillingQuestionnaire;
+import com.example.ferooz.horticulture.pojoclasses.RiskProfillingQuestionnaireOption;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -48,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import android.os.Handler;
 import android.widget.Toast;
@@ -96,7 +101,7 @@ public class CropDetailQuestionary extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_detail_questionary);
 
-        appUserDetails = (AppUserDetails) getIntent().getSerializableExtra(FarmerDetailsActivity.PAR_KEY);
+        appUserDetails = (AppUserDetails) getIntent().getSerializableExtra(MainActivity.PAR_KEY);
         Intent intent = getIntent();
 
         CropCode = intent.getIntExtra("CropCode", 0);
@@ -460,10 +465,10 @@ public class CropDetailQuestionary extends AppCompatActivity implements View.OnC
                 } catch (FileNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }/* catch (IOException e) {
+                } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }*/
+                }
             }
         }else if(MediaType.equalsIgnoreCase("video")){
             if (requestCode == VIDEO_CAPTURE) {
